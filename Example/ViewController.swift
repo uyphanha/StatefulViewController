@@ -36,7 +36,7 @@ class ViewController: UIViewController, StatefulViewController {
         refresh()
     }
     
-    func refresh() {
+    @objc func refresh() {
         if (lastState == .loading) { return }
         
         startLoading {
@@ -47,7 +47,7 @@ class ViewController: UIViewController, StatefulViewController {
         // Fake network call
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             // Success
-            self.dataArray = ["Merlot", "Sauvignon Blanc", "Blaufränkisch", "Pinot Nior"]
+            self.dataArray = [] // ["Merlot", "Sauvignon Blanc", "Blaufränkisch", "Pinot Nior"]
             self.tableView.reloadData()
             self.endLoading(error: nil, completion: {
                 print("completion endLoading -> loadingState: \(self.currentState.rawValue)")
